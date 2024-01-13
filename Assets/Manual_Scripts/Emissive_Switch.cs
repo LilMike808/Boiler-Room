@@ -6,6 +6,8 @@ public class Emissive_Switch : MonoBehaviour
 {
     [SerializeField]
     private Material _emissiveMaterial;
+    [SerializeField]
+    private GameObject _nudgePoint;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +21,7 @@ public class Emissive_Switch : MonoBehaviour
     }
     public void TurnEmissionOnOrOff()
     {
-        if (_emissiveMaterial.IsKeywordEnabled("_EMISSION"))
+        if (_emissiveMaterial.IsKeywordEnabled("_EMISSION") && _nudgePoint == null)
         {
             _emissiveMaterial.DisableKeyword("_EMISSION");
         }
@@ -32,5 +34,15 @@ public class Emissive_Switch : MonoBehaviour
     private void OnDisable()
     {
         _emissiveMaterial.DisableKeyword("_EMISSION");
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        GetComponentInChildren<Collider>(_nudgePoint.gameObject);
+
+        if(other.tag == "Burn Box")
+        {
+            TurnEmissionOnOrOff();
+        }
     }
 }

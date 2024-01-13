@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
@@ -21,7 +22,6 @@ public class Switch : MonoBehaviour
     private GameObject _chains;
     private bool _isKey1 = false;
     private bool _isKey2 = false;
-
 
     // Start is called before the first frame update
     void Start()
